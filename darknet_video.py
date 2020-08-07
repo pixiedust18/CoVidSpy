@@ -222,8 +222,8 @@ def YOLO(F= 0.00415, sd = 0, video_path = '/content/mask_footage.mp4', configPat
             prev_time = time.time()
             ret, frame_read = cap.read()
             frame_rgb = cv2.cvtColor(frame_read, cv2.COLOR_BGR2RGB)
-            frame_resized = cv2.resize(frame_rgb, (512, 512))
-            frame_resized = cv2.rotate(frame_resized, cv2.ROTATE_90_CLOCKWISE)
+            frame_resized = cv2.resize(frame_rgb, (690, 388p))
+            #frame_resized = cv2.rotate(frame_resized, cv2.ROTATE_90_CLOCKWISE)
             darknet.copy_image_from_bytes(darknet_image,frame_resized.tobytes())
            
         
