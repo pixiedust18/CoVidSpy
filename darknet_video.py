@@ -61,6 +61,7 @@ def check(p1, p2, w1, w2, h1, h2, SD, f):
     
     if (ed > 0 and (sd1 + sd2) > ed):
         return False
+    return True
     
     '''x1, y1 = p1[0], p1[1]
     x2, y2 = p2[0], p2[1]
@@ -158,33 +159,33 @@ def draw_zone1(image, zone_no):
         image = cv2.line(image, pt1, pt2, color, thickness)
 
         pt1 = (int(end_x1), int(end_y1))
-        pt2 = (int(x1[zone_no - 2]), int(y1[zone_no-2]))
+        pt2 = (int(x1_co[zone_no - 2]), int(y1_co[zone_no-2]))
         image = cv2.line(image, pt1, pt2, color, thickness)
 
-        pt1 = (int(x2[zone_no - 2]), int(y2[zone_no-2]))
-        pt2 = (int(x1[zone_no - 2]), int(y1[zone_no-2]))
+        pt1 = (int(x2_co[zone_no - 2]), int(y2_co[zone_no-2]))
+        pt2 = (int(x1_co[zone_no - 2]), int(y1_co[zone_no-2]))
         image = cv2.line(image, pt1, pt2, color, thickness)
 
-        pt1 = (int(x2[zone_no - 2]), int(y2[zone_no-2]))
+        pt1 = (int(x2_co[zone_no - 2]), int(y2_co[zone_no-2]))
         pt2 = (int(end_x2), int(end_y2))
         image = cv2.line(image, pt1, pt2, color, thickness)
   
     else:
         
-        pt1 = (int(x2[zone_no - 2]), int(y2[zone_no-2]))
-        pt2 = (int(x1[zone_no - 2]), int(y1[zone_no-2]))
+        pt1 = (int(x2_co[zone_no - 2]), int(y2_co[zone_no-2]))
+        pt2 = (int(x1_co[zone_no - 2]), int(y1_co[zone_no-2]))
         image = cv2.line(image, pt1, pt2, color, thickness)
 
-        pt1 = (int(x1[zone_no - 1]), int(y1[zone_no-1]))
-        pt2 = (int(x1[zone_no - 2]), int(y1[zone_no-2]))
+        pt1 = (int(x1_co[zone_no - 1]), int(y1_co[zone_no-1]))
+        pt2 = (int(x1_co[zone_no - 2]), int(y1_co[zone_no-2]))
         image = cv2.line(image, pt1, pt2, color, thickness)
 
-        pt1 = (int(x2[zone_no - 1]), int(y2[zone_no-1]))
-        pt2 = (int(x2[zone_no - 2]), int(y2[zone_no-2]))
+        pt1 = (int(x2_co[zone_no - 1]), int(y2_co[zone_no-1]))
+        pt2 = (int(x2_co[zone_no - 2]), int(y2_co[zone_no-2]))
         image = cv2.line(image, pt1, pt2, color, thickness)
 
-        pt1 = (int(x2[zone_no - 1]), int(y2[zone_no-1]))
-        pt2 = (int(x1[zone_no - 1]), int(y1[zone_no-1]))
+        pt1 = (int(x2_co[zone_no - 1]), int(y2_co[zone_no-1]))
+        pt2 = (int(x1_co[zone_no - 1]), int(y1_co[zone_no-1]))
         image = cv2.line(image, pt1, pt2, color, thickness)
 
     return image
