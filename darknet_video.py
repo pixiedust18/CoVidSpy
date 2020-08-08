@@ -104,9 +104,9 @@ def draw_zones(image):
     pt1 = (start_x1,start_y1)
     pt2 = (start_x2,start_y2)
     image = cv2.line(image, pt1, pt2, color, thickness) 
-    tx = int((max(start_x1, x1_co[0]) + min(start_x2, x2_co[0]))/2)
+    tx = int((max(start_x1, x1_co[0]) + min(start_x2, x2_co[0]))/2) - 15
     if(start_y1 == y1_co[0] and start_y2 == y2_co[0]):
-        ty = int(((start_y1 + start_y2)/2 + ht)/2)
+        ty = int(((start_y1 + start_y2)/2 + ht)/2) 
     else:
         ty = int(((start_y1 + start_y2)/2 + (y1_co[0] + y2_co[0])/2)/2)     
         
@@ -115,7 +115,7 @@ def draw_zones(image):
 
     pt1 = (end_x1, end_y1)
     pt2 = (end_x2,end_y2)
-    tx = int((max(end_x1, x1_co[zones-2]) + min(end_x2, x2_co[zones-2]))/2)
+    tx = int((max(end_x1, x1_co[zones-2]) + min(end_x2, x2_co[zones-2]))/2) - 15
     
     if(end_y1 == y1_co[zones-2] and end_y2 == y2_co[zones-2]):
         ty = int(((end_y1 + end_y2)/4))
@@ -141,7 +141,7 @@ def draw_zones(image):
         image = cv2.line(image, pt1, pt2, color, thickness)
         
     for i in range(zones-2):
-        tx = int((max(x1_co[i], x1_co[i+1]) + min(x2_co[i], x2_co[i+1]))/2)
+        tx = int((max(x1_co[i], x1_co[i+1]) + min(x2_co[i], x2_co[i+1]))/2) - 15
         ty = int((y1_co[i]+y2_co[i]+y1_co[i+1]+y2_co[i+1])/4)
         cv2.putText(image, "Zone "+str(i+2), (tx, ty), font, font_scale, (0, 255, 0), 2)
 
