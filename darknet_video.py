@@ -93,7 +93,7 @@ def pointbelowline(m, c, x1, y1):
 ###############################################################
 def draw_zones(image):
     color = (0, 255, 0) 
-    thickness = 10
+    thickness = 5
 
         
     pt1 = (start_x1,start_y1)
@@ -116,7 +116,7 @@ def draw_zones(image):
     for i in range(zones-1):
         pt1 = (int(x1_co[i]), int(y1_co[i]))
         pt2 = (int(x2_co[i]), int(y2_co[i]))
-        image = cv2.line(image, pt1, pt2, color, thickness)
+        image = cv2.line(image, pt1, pt2, color, 10)
         
     return image 
 ###############################################################
@@ -137,8 +137,15 @@ def draw_zone1(image, zone_no):
     thickness = 5
         
     if (zone_no == 1):
-        pt1 = (int(start_x1),int(start_y1))
-        pt2 = (int(start_x2),int(start_y2))
+        if(start_y1>=5):
+            pt1 = (int(start_x1),int(start_y1+5))
+        else:
+            pt1 = (int(start_x1),int(start_y1))
+            
+        if(start_y1>=5):
+            pt2 = (int(start_x2),int(start_y2+5))
+        else:
+            pt2 = (int(start_x2),int(start_y2))
         image = cv2.line(image, pt1, pt2, color, thickness) 
 
         pt1 = (int(start_x1),int(start_y1))
