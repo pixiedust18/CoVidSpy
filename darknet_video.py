@@ -258,7 +258,7 @@ def draw_zone1(image, zone_no):
         
         tx = int((max(x1_co[zone_no - 1], x1_co[zone_no - 2]) + min(x2_co[zone_no - 1], x2_co[zone_no - 2]))/2) - 30
         ty = int((y1_co[zone_no - 1]+y2_co[zone_no - 1]+y1_co[zone_no - 2]+y2_co[zone_no - 2])/4)
-        cv2.putText(image, "Zone "+str(i+2), (tx, ty), font, font_scale, (0, 0, 255), 2)
+        cv2.putText(image, "Zone "+str(zone_no), (tx, ty), font, font_scale, (0, 0, 255), 2)
 
     return image
 
