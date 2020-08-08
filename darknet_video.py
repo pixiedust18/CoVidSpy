@@ -352,11 +352,11 @@ def cvDrawBoxes(detections, img, SD, f):
         
         if (sd_main[i] == True):
             print("SD")
-            cv2.rectangle(img, (x, y), (x + w, y + h), (150, 150, 0), 2)
+            cv2.rectangle(img, (x, y), (x + w, y + h), (0, 250, 0), 2)
             cv2.putText(img, str(i)+" SD", (x,y - 10), font, font_scale, (0, 250, 0), thickness)
         else:  
             print("NO SD")
-            cv2.rectangle(img, (x, y), (x + w, y + h), (0, 0, 150), 2)
+            cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
             cv2.putText(img, str(i)+" No SD", (x,y - 10), font, font_scale, (255, 0, 0), thickness)
         i+=1
                 
