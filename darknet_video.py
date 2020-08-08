@@ -26,13 +26,20 @@ def check(p1, p2, w1, w2, h1, h2, SD, f):
     x2, y2 = p2[0], p2[1]
     if(x1==x2 and y1==y2):
         return True
-    coords = [(x1, y1), (x2, y2)]
-       
-    social_distance = distance.euclidean([x1, y1], [x2, y2])
-    print(social_distance)
-    param = (x1+x2)/2
-    if(social_distance > 0 and social_distance < 0.25 * param):
+    coords = [(x1, y1), (x2, y2)]       
+    ed = distance.euclidean([x1, y1], [x2, y2])
+    print(ed)
+    
+    x_dist = abs(x1-x2)
+    y_dist = abs(y1-y2)
+    theta = math.atan(y_dist / x_dist)
+    
+    sd1 = h1 / 1.7 * math.cos(theta)
+    sd2 = h2 / 1.7 * math.cos(theta)
+    
+    if (ed > 0 and (sd1 + sd2) > ed):
         return False
+    
     '''x1, y1 = p1[0], p1[1]
     x2, y2 = p2[0], p2[1]
     if(x1==x2 and y1==y2):
