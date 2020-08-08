@@ -114,8 +114,8 @@ def draw_zones(image):
 
 
     for i in range(zones-1):
-        pt1 = (int(x1_co[i]), int(y1_co[i]))
-        pt2 = (int(x2_co[i]), int(y2_co[i]))
+        pt1 = (int(x1_co[i]), int(y1_co[i]+5))
+        pt2 = (int(x2_co[i]), int(y2_co[i]+5))
         image = cv2.line(image, pt1, pt2, color, 10)
         
     return image 
