@@ -126,7 +126,7 @@ def find_zone(find_x, find_y):
         return 1
 
     for i in range(zones-2):
-        if (pointaboveline(m_co[i], c_co[i], find_x, find_y)==True and pointbelowline(m_co[i+1], c_co[i+1], find_x, find_y)==True):
+        if (pointaboveline(m_co[i+1], c_co[i+1], find_x, find_y)==True and pointbelowline(m_co[i], c_co[i], find_x, find_y)==True):
             print("Zone", i+2)
             return i+2
     print("Zone", zones)
