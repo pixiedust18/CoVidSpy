@@ -93,7 +93,7 @@ def pointbelowline(m, c, x1, y1):
 ###############################################################
 def draw_zones(image):
     color = (0, 255, 0) 
-    thickness = 5
+    thickness = 10
 
         
     pt1 = (start_x1,start_y1)
