@@ -95,14 +95,25 @@ def draw_zones(image):
     color = (0, 255, 0) 
     thickness = 5
 
+    font_scale = 1
+    blue = (0,0,255)
+    green = (0,255,0)
+    red = (255,0,0)
+    font=cv2.FONT_HERSHEY_COMPLEX
         
     pt1 = (start_x1,start_y1)
     pt2 = (start_x2,start_y2)
     image = cv2.line(image, pt1, pt2, color, thickness) 
+    tx = int((512)/2)
+    ty = int((start_y1 + start_y2 + 512)/4)
+    cv2.putText(image, "Zone 1", (tx, ty), font, font_scale, (0, 255, 0), thickness)
 
     pt1 = (end_x1, end_y1)
     pt2 = (end_x2,end_y2)
-    image = cv2.line(image, pt1, pt2, color, thickness) 
+    ty = int((end_y1 + end_y2)/4)
+    image = cv2.line(image, pt1, pt2, color, thickness)
+    cv2.putText(image, "Zone "+str(zones), (tx, ty), font, font_scale, (0, 255, 0), thickness)
+
 
     pt1 = (end_x2,end_y2)
     pt2 = (start_x2,start_y2)
@@ -118,6 +129,10 @@ def draw_zones(image):
         pt2 = (int(x2_co[i]), int(y2_co[i]))
         image = cv2.line(image, pt1, pt2, color, thickness)
         
+    for i in range(zones-2):
+        ty = int((y1_col[i]+y2_col[i]+y1_col[i+1]+y2_col[i+1])/4)
+        cv2.putText(image, "Zone "+str(zones+2), (tx, ty), font, font_scale, (0, 255, 0), thickness)
+
     return image 
 ###############################################################
 def find_zone(find_x, find_y):
