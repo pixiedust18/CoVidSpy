@@ -104,7 +104,7 @@ def draw_zones(image):
     pt1 = (start_x1,start_y1)
     pt2 = (start_x2,start_y2)
     image = cv2.line(image, pt1, pt2, color, thickness) 
-    tx = int((max(start_x1, x1_co[0]) + min(start_x2, x2_co[0]))/2) - 30
+    tx = int((max(start_x1, x1_co[0]) + min(start_x2, x2_co[0]))/2) - 50
     if(start_y1 == y1_co[0] and start_y2 == y2_co[0]):
         ty = int(((start_y1 + start_y2)/2 + ht)/2) 
     else:
@@ -115,7 +115,7 @@ def draw_zones(image):
 
     pt1 = (end_x1, end_y1)
     pt2 = (end_x2,end_y2)
-    tx = int((max(end_x1, x1_co[zones-2]) + min(end_x2, x2_co[zones-2]))/2) - 30
+    tx = int((max(end_x1, x1_co[zones-2]) + min(end_x2, x2_co[zones-2]))/2) - 50
     
     if(end_y1 == y1_co[zones-2] and end_y2 == y2_co[zones-2]):
         ty = int(((end_y1 + end_y2)/4))
@@ -141,7 +141,7 @@ def draw_zones(image):
         image = cv2.line(image, pt1, pt2, color, thickness)
         
     for i in range(zones-2):
-        tx = int((max(x1_co[i], x1_co[i+1]) + min(x2_co[i], x2_co[i+1]))/2) - 30
+        tx = int((max(x1_co[i], x1_co[i+1]) + min(x2_co[i], x2_co[i+1]))/2) - 50
         ty = int((y1_co[i]+y2_co[i]+y1_co[i+1]+y2_co[i+1])/4)
         cv2.putText(image, "Zone "+str(i+2), (tx, ty), font, font_scale, (0, 255, 0), 2)
 
@@ -160,7 +160,7 @@ def find_zone(find_x, find_y):
     return zones
 ###############################################################
 def draw_zone1(image, zone_no):
-    color = (0, 0, 255) 
+    color = (255, 0, 0) 
     thickness = 5
     
     font_scale = 1
@@ -194,14 +194,14 @@ def draw_zone1(image, zone_no):
         pt2 = (int(x2_co[0]),int(y2_co[0]))
         image = cv2.line(image, pt1, pt2, color, thickness) 
         
-        tx = int((max(start_x1, x1_co[0]) + min(start_x2, x2_co[0]))/2) - 30
+        tx = int((max(start_x1, x1_co[0]) + min(start_x2, x2_co[0]))/2) - 50
         if(start_y1 == y1_co[0] and start_y2 == y2_co[0]):
             ty = int(((start_y1 + start_y2)/2 + ht)/2) 
         else:
             ty = int(((start_y1 + start_y2)/2 + (y1_co[0] + y2_co[0])/2)/2)     
 
 
-        cv2.putText(image, "Zone 1", (tx, ty), font, font_scale, (0, 0, 255), 2)
+        cv2.putText(image, "Zone 1", (tx, ty), font, font_scale, color, 2)
 
 
 
@@ -222,7 +222,7 @@ def draw_zone1(image, zone_no):
         pt2 = (int(end_x2), int(end_y2))
         image = cv2.line(image, pt1, pt2, color, thickness)
         
-        tx = int((max(end_x1, x1_co[zones-2]) + min(end_x2, x2_co[zones-2]))/2) - 30
+        tx = int((max(end_x1, x1_co[zones-2]) + min(end_x2, x2_co[zones-2]))/2) - 50
     
         if(end_y1 == y1_co[zones-2] and end_y2 == y2_co[zones-2]):
             ty = int(((end_y1 + end_y2)/4))
@@ -230,7 +230,7 @@ def draw_zone1(image, zone_no):
             ty = int(((end_y1 + end_y2)/2 + (y1_co[zones-2] + y2_co[zones-2])/2)/2)        
 
         image = cv2.line(image, pt1, pt2, color, thickness)
-        cv2.putText(image, "Zone "+str(zones), (tx, ty), font, font_scale, (0, 0, 255), 2)
+        cv2.putText(image, "Zone "+str(zones), (tx, ty), font, font_scale, color, 2)
   
     else:
         if (zone_no%2==1):
@@ -256,9 +256,9 @@ def draw_zone1(image, zone_no):
         pt2 = (int(x2_co[zone_no - 2]), int(y2_co[zone_no-2]))
         image = cv2.line(image, pt1, pt2, color, thickness)
         
-        tx = int((max(x1_co[zone_no - 1], x1_co[zone_no - 2]) + min(x2_co[zone_no - 1], x2_co[zone_no - 2]))/2) - 30
+        tx = int((max(x1_co[zone_no - 1], x1_co[zone_no - 2]) + min(x2_co[zone_no - 1], x2_co[zone_no - 2]))/2) - 50
         ty = int((y1_co[zone_no - 1]+y2_co[zone_no - 1]+y1_co[zone_no - 2]+y2_co[zone_no - 2])/4)
-        cv2.putText(image, "Zone "+str(zone_no), (tx, ty), font, font_scale, (0, 0, 255), 2)
+        cv2.putText(image, "Zone "+str(zone_no), (tx, ty), font, font_scale, color, 2)
 
     return image
 
@@ -353,11 +353,11 @@ def cvDrawBoxes(detections, img, SD, f):
         if (sd_main[i] == True):
             print("SD")
             cv2.rectangle(img, (x, y), (x + w, y + h), (150, 150, 0), 2)
-            cv2.putText(img, str(i)+" SD", (x,y - 10), font, font_scale, (150, 150, 0), thickness)
+            cv2.putText(img, str(i)+" SD", (x,y - 10), font, font_scale, (0, 250, 0), thickness)
         else:  
             print("NO SD")
             cv2.rectangle(img, (x, y), (x + w, y + h), (0, 0, 150), 2)
-            cv2.putText(img, str(i)+" No SD", (x,y - 10), font, font_scale, (0, 0, 150), thickness)
+            cv2.putText(img, str(i)+" No SD", (x,y - 10), font, font_scale, (255, 0, 0), thickness)
         i+=1
                 
                 
@@ -426,7 +426,7 @@ def YOLO(F= 0.00415, sd = 0, video_path = '/content/mask_footage.mp4', configPat
     cap = cv2.VideoCapture(video_path)
     cap.set(3, 1280)
     cap.set(4, 720)
-    fps = 20.0
+    fps = 14.0
     out = cv2.VideoWriter(
         "output.avi", cv2.VideoWriter_fourcc(*"MJPG"), fps,
         (darknet.network_width(netMain), darknet.network_height(netMain)))
