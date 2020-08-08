@@ -255,6 +255,9 @@ def cvDrawBoxes(detections, img, SD, f):
             sd = check(mid1, mid2, wp[i], wp[j], hp[i], hp[j], SD, f)
             print(i, " -> ", j," = ", sd)
             if(sd == False):
+                print("coords------____------------------")
+                print(mid1[0], mid1[1], mid2[0], mid2[1])
+                print("________------__------------------")
                 zone_no = int(find_zone(mid1[0], mid1[1]))
                 img = draw_zone1(img, zone_no)
                 truth = False
