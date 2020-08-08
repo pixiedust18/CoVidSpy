@@ -19,8 +19,9 @@ x2_co=[]
 y2_co =[]
 m_co=[]
 c_co=[]
-with open(“floor_coordinates.txt”) as f:
-    zones = int(next(f).split())  # read first line
+with open("floor_coordinates.txt") as f:
+    zones = int(next(f))  # read first line
+    wd, ht = [int(y) for y in next(f).split()]
     start_x1, start_y1, start_x2, start_y2 = [int(y) for y in next(f).split()] # read first line
     end_x1, end_y1, end_x2, end_y2 = [int(y) for y in next(f).split()]
     array = []
@@ -253,7 +254,7 @@ def cvDrawBoxes(detections, img, SD, f):
             sd = check(mid1, mid2, wp[i], wp[j], hp[i], hp[j], SD, f)
             print(i, " -> ", j," = ", sd)
             if(sd == False):
-                zone_no = find_zone(mid1[0], mid1[1])
+                zone_no = int(find_zone(mid1[0], mid1[1]))
                 img = draw_zone1(img, zone_no)
                 truth = False
                 break
