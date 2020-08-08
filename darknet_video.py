@@ -19,10 +19,10 @@ def convertBack(x, y, w, h):
     ymin = int(round(y - (h / 2)))
     ymax = int(round(y + (h / 2)))
     return xmin, ymin, xmax, ymax
-f = 0.0046
+f = 0.00415
 import math
 def check(p1, p2, w1, w2, h1, h2, SD, f):
-    '''x1, y1 = p1[0], p1[1]
+    x1, y1 = p1[0], p1[1]
     x2, y2 = p2[0], p2[1]
     if(x1==x2 and y1==y2):
         print("eq")
@@ -39,20 +39,12 @@ def check(p1, p2, w1, w2, h1, h2, SD, f):
     print(ed)
     if (ed>0 and ed<SD):
         return False
-    return True'''
-    x1, y1 = p1[0], p1[1]
-    x2, y2 = p2[0], p2[1]
-    if(x1==x2 and y1==y2):
-        return True
-    coords = [(x1, y1), (x2, y2)]
-       
-    social_distance = distance.euclidean([x1, y1], [x2, y2])
-    print(social_distance)
-    param = (x1+x2)/2
+    return True
+    '''param = (x1+x2)/2
     if(social_distance > 0 and social_distance < 0.25 * param):
         return False
     
-    return True
+    return True'''
 
 def cvDrawBoxes(detections, img, SD, f):
     print("SD: ", SD)
@@ -223,15 +215,14 @@ def YOLO(F= 0.00415, sd = 0, video_path = '/content/mask_footage.mp4', configPat
     # Create an image we reuse for each detect
     darknet_image = darknet.make_image(darknet.network_width(netMain),
                                     darknet.network_height(netMain),3)
-    main_tim = 0
-    frame_no = 0
     while True:
         #try:
             prev_time = time.time()
             ret, frame_read = cap.read()
             frame_rgb = cv2.cvtColor(frame_read, cv2.COLOR_BGR2RGB)
-            frame_resized = cv2.resize(frame_rgb, (690, 388))
-            #frame_resized = cv2.rotate(frame_resized, cv2.ROTATE_90_CLOCKWISE)
+            frame_resized = cv2.resize(frame_rgb,
+                                       512, 512)
+            frame_resized = cv2.rotate(frame_resized, cv2.ROTATE_90_CLOCKWISE)
             darknet.copy_image_from_bytes(darknet_image,frame_resized.tobytes())
            
         
@@ -240,9 +231,6 @@ def YOLO(F= 0.00415, sd = 0, video_path = '/content/mask_footage.mp4', configPat
             image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
             out.write(image)
             print(1/(time.time()-prev_time))
-            main_tim += time.time()-prev_time
-            frame_no += 1
-            print("-------------------------------------------------------------------\n frame no  = ", frame_no, '\n------------------------------------------------------------')
             io.imshow(image)
             io.show()
             cv2.waitKey(3)
