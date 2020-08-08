@@ -330,7 +330,7 @@ def cvDrawBoxes(detections, img, SD, f):
                 print("coords------____------------------")
                 print(mid1[0], mid1[1], mid2[0], mid2[1])
                 print("________------__------------------")
-                zone_no = int(find_zone((mid1[0]+wp[i]/2), (mid1[1]+hp[i]/2)))
+                zone_no = int(find_zone((mid1[0]), (mid1[1]-hp[i]/2)))
                 img = draw_zone1(img, zone_no)
                 truth = False
                 break
