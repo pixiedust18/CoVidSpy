@@ -145,8 +145,8 @@ def draw_zone1(image, zone_no):
         pt2 = (int(x1_co[0]),int(y1_co[0]))
         image = cv2.line(image, pt1, pt2, color, thickness) 
 
-        pt1 = (int(x1_co[0]),int(y1_co[0]))
-        pt2 = (int(x2_co[0]),int(y2_co[0]))
+        pt1 = (int(x1_co[0]),int(y1_co[0]+5))
+        pt2 = (int(x2_co[0]),int(y2_co[0]+5))
         image = cv2.line(image, pt1, pt2, color, thickness) 
 
         pt1 = (int(start_x2),int(start_y2))
@@ -184,8 +184,8 @@ def draw_zone1(image, zone_no):
         pt2 = (int(x2_co[zone_no - 2]), int(y2_co[zone_no-2]))
         image = cv2.line(image, pt1, pt2, color, thickness)
 
-        pt1 = (int(x2_co[zone_no - 1]), int(y2_co[zone_no-1]))
-        pt2 = (int(x1_co[zone_no - 1]), int(y1_co[zone_no-1]))
+        pt1 = (int(x2_co[zone_no - 1]), int(y2_co[zone_no-1+5]))
+        pt2 = (int(x1_co[zone_no - 1]), int(y1_co[zone_no-1+5]))
         image = cv2.line(image, pt1, pt2, color, thickness)
 
     return image
