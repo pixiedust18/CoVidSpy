@@ -138,7 +138,7 @@ def draw_zones(image):
     for i in range(zones-1):
         pt1 = (int(x1_co[i]), int(y1_co[i]))
         pt2 = (int(x2_co[i]), int(y2_co[i]))
-        image = cv2.line(image, pt1, pt2, color, thickness)
+        image = cv2.line(image, pt1, pt2, color, 10)
         
     for i in range(zones-2):
         tx = int((max(x1_co[i], x1_co[i+1]) + min(x2_co[i], x2_co[i+1]))/2) - 50
