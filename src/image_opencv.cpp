@@ -984,7 +984,7 @@ extern "C" int show_image_cv(image im, const char* name, int ms)
 
         if (ed > 0 && (sd1 + sd2)/2 > ed)
             return false;
-
+        return true;
         /*float v1 = 1.6 * F / (F * h1 + 1.65);
         float v2 = 1.6 * F / (F * h2 + 1.65);
         float u1 = v1* 1.6/h1;
