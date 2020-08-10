@@ -982,7 +982,7 @@ extern "C" int show_image_cv(image im, const char* name, int ms)
         float sd1 = h1 / 1.7 * cos(theta);
         float sd2 = h2 / 1.7 * cos(theta);
 
-        if (ed > 0 && (sd1 + sd2) > ed)
+        if (ed > 0 && (sd1 + sd2)/2 > ed)
             return false;
 
         /*float v1 = 1.6 * F / (F * h1 + 1.65);
