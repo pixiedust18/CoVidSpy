@@ -971,21 +971,21 @@ extern "C" int show_image_cv(image im, const char* name, int ms)
         std::cout << " IN CHECK ";
         if (x1 == x2 and y1 == y2)
             return true;
-        /*std::cout<<" IN CHECK ";
-    float ed = sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
-    std::cout<<(ed)<<"\n";
-    
-    float x_dist = abs(x1-x2);
-    float y_dist = abs(y1-y2);
-    float theta = atan(y_dist / x_dist);
-    
-    float sd1 = h1 / 1.7 * cos(theta);
-    float sd2 = h2 / 1.7 * cos(theta);
-    
-    if (ed > 0 && (sd1 + sd2) > ed)
-        return false;*/
+        std::cout<<" IN CHECK ";
+        float ed = sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
+        std::cout<<(ed)<<"\n";
 
-        float v1 = 1.6 * F / (F * h1 + 1.65);
+        float x_dist = abs(x1-x2);
+        float y_dist = abs(y1-y2);
+        float theta = atan(y_dist / x_dist);
+
+        float sd1 = h1 / 1.7 * cos(theta);
+        float sd2 = h2 / 1.7 * cos(theta);
+
+        if (ed > 0 && (sd1 + sd2) > ed)
+            return false;
+
+        /*float v1 = 1.6 * F / (F * h1 + 1.65);
         float v2 = 1.6 * F / (F * h2 + 1.65);
         float u1 = v1* 1.6/h1;
         float vsd1, vsd2;
@@ -1007,7 +1007,7 @@ extern "C" int show_image_cv(image im, const char* name, int ms)
 
         if(ed>0 && ed<sd)
             return false;
-        return true;
+        return true;*/
     }
     extern "C" void draw_detections_cv_v3(mat_cv *mat, detection *dets, int num, float thresh, char **names, image **alphabet, int classes, int ext_output)
     {
