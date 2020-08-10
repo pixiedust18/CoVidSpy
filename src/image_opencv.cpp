@@ -1021,7 +1021,7 @@ extern "C" int show_image_cv(image im, const char* name, int ms)
                 return;
             static int frame_id = 0;
             frame_id++;
-            thresh = 0.35
+            thresh = 0.35;
             int ppl = 0;
             for (i = 0; i < num; ++i)
             {
