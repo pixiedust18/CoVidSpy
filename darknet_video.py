@@ -348,7 +348,7 @@ def cvDrawBoxes(detections, img, SD, f):
         pt1 = (xmin, ymin)
         pt2 = (xmax, ymax)
     for i in range(zones):
-        str2 = "Zone " + str(i+1) + " : "  str(zones_count[i]) + "\n"
+        str2 = "Zone " + str(i+1) + " : " + str(zones_count[i]) + "\n"
         print(str2)
         fo = open("/content/gdrive/My Drive/zone_op.txt", "a+")        
         fo.write(str2)
