@@ -34,7 +34,6 @@ with open("floor_coordinates.txt") as f:
         m_co.append(m)
         c_co.append(c)
         
-        
 def convertBack(x, y, w, h):
     xmin = int(round(x - (w / 2)))
     xmax = int(round(x + (w / 2)))
@@ -281,7 +280,10 @@ def cvDrawBoxes(detections, img, SD, f):
     green = (0,255,0)
     red = (255,0,0)
     font=cv2.FONT_HERSHEY_COMPLEX
-    
+    zones_count = []
+    zones_count = ([0] * zones)[:zones]
+
+
     for detection in detections:
         x, y, w, h = detection[2][0],\
             detection[2][1],\
@@ -335,6 +337,7 @@ def cvDrawBoxes(detections, img, SD, f):
                 print(mid1[0], mid1[1], mid2[0], mid2[1])
                 print("________------__------------------")
                 zone_no = int(find_zone((mid1[0]), (mid1[1]-hp[i]/2)))
+                zones_count[zone_no-1] = zones_count[zone_no-1] + 1
                 img = draw_zone1(img, zone_no)
                 truth = False
                 break
@@ -344,6 +347,11 @@ def cvDrawBoxes(detections, img, SD, f):
             
         pt1 = (xmin, ymin)
         pt2 = (xmax, ymax)
+    for i in zones:
+        str2 = "Zone :" + str(i+1) + str(zones_count[i])
+        print(str2)
+        fo = open("/content/gdrive/My Drive/zone_op.txt", "a+")        
+        fo.write(str2)
         
     i=0
     for coord in xywh:
