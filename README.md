@@ -5,4 +5,6 @@ Result videos and pictures for :
 - Mask detection
 - Social distancing ( With zoning )
 - Social distancing + Mask Detection 
-https://drive.google.com/file/d/1rrXW943-7DjKlnFOk1ysYkjlp0fBU-8L/view?usp=sharing
+
+
+https://drive.google.com/drive/folders/1ljjTYc5eigNaVWz9o84qDD3Vh7eWZW1F?usp=sharing
