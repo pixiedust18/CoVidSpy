@@ -5,6 +5,7 @@ Result videos and pictures for :
 - Mask detection
 - Social distancing ( With zoning )
 - Social distancing + Mask Detection 
+- Human temperature estimation
 
 
 https://drive.google.com/drive/folders/1ljjTYc5eigNaVWz9o84qDD3Vh7eWZW1F?usp=sharing
