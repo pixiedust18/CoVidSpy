@@ -971,9 +971,9 @@ extern "C" int show_image_cv(image im, const char* name, int ms)
         std::cout << " IN CHECK ";
         if (x1 == x2 and y1 == y2)
             return true;
-        std::cout<<" IN CHECK ";
+        //std::cout<<" IN CHECK ";
         float ed = sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
-        std::cout<<(ed)<<"\n";
+        //std::cout<<(ed)<<"\n";
 
         float x_dist = abs(x1-x2);
         float y_dist = abs(y1-y2);
@@ -1011,7 +1011,7 @@ extern "C" int show_image_cv(image im, const char* name, int ms)
     }
     extern "C" void draw_detections_cv_v3(mat_cv *mat, detection *dets, int num, float thresh, char **names, image **alphabet, int classes, int ext_output)
     {
-        std::cout << "extern C void draw_detections_cv_v3 \n";
+        //std::cout << "extern C void draw_detections_cv_v3 \n";
         int xywh[num][4];
         try
         {
@@ -1031,7 +1031,7 @@ extern "C" int show_image_cv(image im, const char* name, int ms)
                 for (j = 0; j < classes; ++j)
                 {
                     int show = strncmp(names[j], "dont_show", 9);
-                    std::cout << dets[i].prob[j] << " " << thresh << " " << show << "\n";
+                    //std::cout << dets[i].prob[j] << " " << thresh << " " << show << "\n";
 
                     if (dets[i].prob[j] > thresh && show)
                     {
@@ -1112,7 +1112,7 @@ extern "C" int show_image_cv(image im, const char* name, int ms)
                     }
                 }
             }
-            std::cout << ppl << std::endl;
+            //std::cout << ppl << std::endl;
             bool sd_main[ppl];
             for (int l = 0; l < ppl; l++)
             {
@@ -1120,7 +1120,7 @@ extern "C" int show_image_cv(image im, const char* name, int ms)
                 for (int k = 0; k < ppl; k++)
                 {
                     bool sd = check(xywh[l][0], xywh[k][0], xywh[l][1], xywh[k][1], xywh[l][2], xywh[k][3], xywh[l][3], xywh[k][3]); //x1, x2, y1, y2, w1, w2, h1, h2
-                    std::cout << l << " -> " << k << " = " << sd << "\n";
+                    //std::cout << l << " -> " << k << " = " << sd << "\n";
                     if (!sd)
                     {
                         truth = false;
@@ -1129,7 +1129,7 @@ extern "C" int show_image_cv(image im, const char* name, int ms)
                 }
                 sd_main[l] = truth;
             }
-            std::cout << "out of loop \n";
+            //std::cout << "out of loop \n";
             //int b_x_center = (left + right) / 2;
             //int b_y_center = (top + bot) / 2;
             //int b_width = right - left;
@@ -1140,7 +1140,7 @@ extern "C" int show_image_cv(image im, const char* name, int ms)
             {
                 char labelstr[4096] = {0};
                 int class_id = -1;
-                std::cout << classes << "\n";
+                //std::cout << classes << "\n";
                 for (j = 0; j < classes; ++j)
                 {
                     int show = strncmp(names[j], "dont_show", 9);
@@ -1148,15 +1148,15 @@ extern "C" int show_image_cv(image im, const char* name, int ms)
 
                     if (dets[i].prob[j] > thresh && show)
                     {
-                        std::cout << "IN IF1\n";
+                        //std::cout << "IN IF1\n";
                         if (class_id < 0)
                         {
-                            std::cout << "IN IF2\n";
+                            //std::cout << "IN IF2\n";
                             strcat(labelstr, names[j]);
-                            std::cout << "IN IF2 a\n";
+                            //std::cout << "IN IF2 a\n";
                             class_id = j;
                             char buff[10];
-                            std::cout << dets[i].prob[j];
+                            //std::cout << dets[i].prob[j];
                             printf(buff, " (%2.0f%%)", dets[i].prob[j] * 100);
                             strcat(labelstr, buff);
                             printf("%s: %.0f%% ", names[j], dets[i].prob[j] * 100);
@@ -1165,7 +1165,7 @@ extern "C" int show_image_cv(image im, const char* name, int ms)
                         {
                             strcat(labelstr, ", ");
                             strcat(labelstr, names[j]);
-                            std::cout << labelstr << "\n";
+                            //std::cout << labelstr << "\n";
                             printf(", %s: %.0f%% ", names[j], dets[i].prob[j] * 100);
                         }
                     }
@@ -1173,7 +1173,7 @@ extern "C" int show_image_cv(image im, const char* name, int ms)
                 if (class_id >= 0)
                 {
                     int width = std::max(1.0f, show_img->rows * .002f);
-                    std::cout << "IN IF\n";
+                    //std::cout << "IN IF\n";
                     //if(0){
                     //width = pow(prob, 1./2.)*10+1;
                     //alphabet = 0;
@@ -1187,7 +1187,7 @@ extern "C" int show_image_cv(image im, const char* name, int ms)
 
                     if (class_id == 2)
                     {
-                        std::cout << "changecol" << counter << "\n";
+                        //std::cout << "changecol" << counter << "\n";
                         if (!sd_main[counter])
                         {
                             red = 1;
@@ -1205,7 +1205,7 @@ extern "C" int show_image_cv(image im, const char* name, int ms)
                             green = 1;
                             blue = 0;
                         }
-                        std::cout << "out of detection " << labelstr;
+                        //std::cout << "out of detection " << labelstr;
                         counter++;
                     }
                     float rgb[3];
