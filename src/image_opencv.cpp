@@ -968,7 +968,7 @@ extern "C" int show_image_cv(image im, const char* name, int ms)
     float sd = 1.8;
     bool check(int x1, int x2, int y1, int y2, int w1, int w2, int h1, int h2)
     {
-        std::cout << " IN CHECK ";
+        //std::cout << " IN CHECK ";
         if (x1 == x2 and y1 == y2)
             return true;
         //std::cout<<" IN CHECK ";
@@ -1144,7 +1144,7 @@ extern "C" int show_image_cv(image im, const char* name, int ms)
                 for (j = 0; j < classes; ++j)
                 {
                     int show = strncmp(names[j], "dont_show", 9);
-                    std::cout << dets[i].prob[j] << " " << thresh << " " << show << "\n";
+                    //std::cout << dets[i].prob[j] << " " << thresh << " " << show << "\n";
 
                     if (dets[i].prob[j] > thresh && show)
                     {
