@@ -325,7 +325,7 @@ def cvDrawBoxes(detections, img, SD, f):
     sd_main = []
     i=0
     j=0
-    img = draw_zones(img)
+    img = draw_zones(img)  #Zoningst a
     for mid1 in person_feet:
         truth = True
         j=0
@@ -336,9 +336,9 @@ def cvDrawBoxes(detections, img, SD, f):
                 #print("coords------____------------------")
                 #print(mid1[0], mid1[1], mid2[0], mid2[1])
                 #print("________------__------------------")
-                zone_no = int(find_zone((mid1[0]), (mid1[1]-hp[i]/2)))
-                zones_count[zone_no-1] = zones_count[zone_no-1] + 1
-                img = draw_zone1(img, zone_no)
+                zone_no = int(find_zone((mid1[0]), (mid1[1]-hp[i]/2))) #Zoninst 2
+                zones_count[zone_no-1] = zones_count[zone_no-1] + 1 #Zoningst 3
+                img = draw_zone1(img, zone_no) #Zoningst 4
                 truth = False
                 break
             j+=1
