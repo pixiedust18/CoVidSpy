@@ -300,7 +300,7 @@ def cvDrawBoxes(detections, img, SD, f):
             label = detection[0].decode()
             
         if (label=='Person'):
-            print(i)
+            #print(i)
             xywh.append(coord)
             wp.append(w)
             hp.append(h)
