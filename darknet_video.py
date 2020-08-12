@@ -331,11 +331,11 @@ def cvDrawBoxes(detections, img, SD, f):
         j=0
         for mid2 in person_feet:
             sd = check(mid1, mid2, wp[i], wp[j], hp[i], hp[j], SD, f)
-            print(i, " -> ", j," = ", sd)
+            #print(i, " -> ", j," = ", sd)
             if(sd == False):
-                print("coords------____------------------")
-                print(mid1[0], mid1[1], mid2[0], mid2[1])
-                print("________------__------------------")
+                #print("coords------____------------------")
+                #print(mid1[0], mid1[1], mid2[0], mid2[1])
+                #print("________------__------------------")
                 zone_no = int(find_zone((mid1[0]), (mid1[1]-hp[i]/2)))
                 zones_count[zone_no-1] = zones_count[zone_no-1] + 1
                 img = draw_zone1(img, zone_no)
@@ -349,7 +349,7 @@ def cvDrawBoxes(detections, img, SD, f):
         pt2 = (xmax, ymax)
     for i in range(zones):
         str2 = "Zone " + str(i+1) + " : " + str(zones_count[i]) + "\n"
-        print(str2)
+        #print(str2)
         fo = open("/content/gdrive/My Drive/zone_op.txt", "a+")        
         fo.write(str2)
         
@@ -442,7 +442,7 @@ def YOLO(F= 0.00415, sd = 0, video_path = '/content/mask_footage.mp4', configPat
     out = cv2.VideoWriter(
         "output.avi", cv2.VideoWriter_fourcc(*"MJPG"), fps,
         (darknet.network_width(netMain), darknet.network_height(netMain)))
-    print("Starting the YOLO loop...")
+    #print("Starting the YOLO loop...")
 
     w = darknet.network_width(netMain)
     f = f *1000 * 512 / sensor_w
@@ -464,7 +464,7 @@ def YOLO(F= 0.00415, sd = 0, video_path = '/content/mask_footage.mp4', configPat
             image = cvDrawBoxes(detections, frame_resized, SD, f)
             image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
             out.write(image)
-            print(1/(time.time()-prev_time))
+            #print(1/(time.time()-prev_time))
             io.imshow(image)
             io.show()
             cv2.waitKey(3)
