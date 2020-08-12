@@ -49,7 +49,7 @@ def check(p1, p2, w1, w2, h1, h2, SD, f):
         return True
     coords = [(x1, y1), (x2, y2)]       
     ed = distance.euclidean([x1, y1], [x2, y2])
-    print(ed)
+    #print(ed)
     
     x_dist = abs(x1-x2)
     y_dist = abs(y1-y2)
@@ -152,14 +152,14 @@ def draw_zones(image):
 ###############################################################
 def find_zone(find_x, find_y):
     if (pointaboveline(m_co[0], c_co[0], find_x, find_y)==True):
-        print("Zone", 1)
+        #print("Zone", 1)
         return 1
 
     for i in range(zones-2):
         if (pointaboveline(m_co[i+1], c_co[i+1], find_x, find_y)==True and pointbelowline(m_co[i], c_co[i], find_x, find_y)==True):
-            print("Zone", i+2)
+            #print("Zone", i+2)
             return i+2
-    print("Zone", zones)
+    #print("Zone", zones)
     return zones
 ###############################################################
 def draw_zone1(image, zone_no):
@@ -267,7 +267,7 @@ def draw_zone1(image, zone_no):
 
 ################################################################################
 def cvDrawBoxes(detections, img, SD, f):
-    print("SD: ", SD)
+    #print("SD: ", SD)
     face_mids = []
     person_feet = []
     xywh = []
@@ -363,11 +363,11 @@ def cvDrawBoxes(detections, img, SD, f):
         
         
         if (sd_main[i] == True):
-            print("SD")
+            #print("SD")
             cv2.rectangle(img, (x, y), (x + w, y + h), (0, 250, 0), 2)
             cv2.putText(img, str(i)+" SD", (x,y - 10), font, font_scale, (0, 250, 0), thickness)
         else:  
-            print("NO SD")
+            #print("NO SD")
             cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
             cv2.putText(img, str(i)+" No SD", (x,y - 10), font, font_scale, (255, 0, 0), thickness)
         i+=1
@@ -414,7 +414,7 @@ def YOLO(F= 0.00415, sd = 0, video_path = '/content/mask_footage.mp4', configPat
         metaMain = darknet.load_meta(metaPath.encode("ascii"))
     if altNames is None:
         try:
-            print("DF")
+            #print("DF")
             
             with open(metaPath) as metaFH:
                 metaContents = metaFH.read()
@@ -446,7 +446,7 @@ def YOLO(F= 0.00415, sd = 0, video_path = '/content/mask_footage.mp4', configPat
 
     w = darknet.network_width(netMain)
     f = f *1000 * 512 / sensor_w
-    print(f, SD)
+    #print(f, SD)
     # Create an image we reuse for each detect
     darknet_image = darknet.make_image(darknet.network_width(netMain),
                                     darknet.network_height(netMain),3)
