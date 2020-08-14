@@ -11,7 +11,7 @@ https://drive.google.com/drive/folders/1ljjTYc5eigNaVWz9o84qDD3Vh7eWZW1F?usp=sha
 
 
 **To run social distancing combined with mask detection, run command : 
-./run.sh**
+- ./run.sh**
 
 To run zoning, with mask and social distancing follow the given steps : 
 1) Access the notebook Zoning.ipynb 
