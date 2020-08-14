@@ -13,7 +13,7 @@ https://drive.google.com/drive/folders/1ljjTYc5eigNaVWz9o84qDD3Vh7eWZW1F?usp=sha
 **To run social distancing combined with mask detection, run command :** 
 - **./run.sh**
 
-**To run zoning, with mask and social distancing follow the given steps : **
+**To run zoning, with mask and social distancing follow the given steps :**
 1) Access the notebook Zoning.ipynb 
   - Enter the number of zones the floor area will be divided into
   - Enter the 4 coordinates of the floor area and run Zoning.ipynb
