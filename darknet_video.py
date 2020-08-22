@@ -58,7 +58,7 @@ def check(p1, p2, w1, w2, h1, h2, SD, f):
     sd1 = h1 / 1.7 * math.cos(theta)
     sd2 = h2 / 1.7 * math.cos(theta)
     
-    if (ed > 0 and (sd1 + sd2) > ed):
+    if (ed > 0 and (sd1 + sd2)/2 > ed):
         return False
     return True
     
