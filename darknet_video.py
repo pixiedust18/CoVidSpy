@@ -8,8 +8,23 @@ import time
 import darknet
 from skimage import io, draw
 import cv2
+from firebase import firebase
 from scipy.spatial import distance
 from google.colab.patches import cv2_imshow
+from datetime import datetime
+import socket # for socket 
+import sys
+'''try: 
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
+    print "Socket successfully created"
+except socket.error as err: 
+    print "socket creation failed with error %s" %(err) 
+s.bind(('', port))  
+c, addr = s.accept()      
+print('Got connection from', addr)
+ '''
+
+ 
 
 SD = 0
 SD = 0
@@ -19,6 +34,9 @@ x2_co=[]
 y2_co =[]
 m_co=[]
 c_co=[]
+
+firebase = firebase.FirebaseApplication('https://covidspy-34239.firebaseio.com/', None)
+frame_count = 0
 with open("floor_coordinates.txt") as f:
     zones = int(next(f))  # read first line
     wd, ht = [int(y) for y in next(f).split()]
@@ -58,7 +76,7 @@ def check(p1, p2, w1, w2, h1, h2, SD, f):
     sd1 = h1 / 1.7 * math.cos(theta)
     sd2 = h2 / 1.7 * math.cos(theta)
     
-    if (ed > 0 and (sd1 + sd2)/2 > ed):
+    if (ed > 0 and (sd1 + sd2) > ed):
         return False
     return True
     
@@ -326,6 +344,7 @@ def cvDrawBoxes(detections, img, SD, f):
     i=0
     j=0
     img = draw_zones(img)  #Zoningst a
+    violation_count = 0
     for mid1 in person_feet:
         truth = True
         j=0
@@ -336,7 +355,9 @@ def cvDrawBoxes(detections, img, SD, f):
                 #print("coords------____------------------")
                 #print(mid1[0], mid1[1], mid2[0], mid2[1])
                 #print("________------__------------------")
+                violation_count = violation_count + 1
                 zone_no = int(find_zone((mid1[0]), (mid1[1]-hp[i]/2))) #Zoninst 2
+                #c.send(str(zone_no))
                 zones_count[zone_no-1] = zones_count[zone_no-1] + 1 #Zoningst 3
                 img = draw_zone1(img, zone_no) #Zoningst 4
                 truth = False
@@ -347,12 +368,29 @@ def cvDrawBoxes(detections, img, SD, f):
             
         pt1 = (xmin, ymin)
         pt2 = (xmax, ymax)
+    zone_count_no = list(range(1, (zones+1)))
+
+    #send_dict = [{"Location" : "Oxford City Square", "Zones": zones, "Surveillance": {"total_people" : i, "total_violations": violation_count,"time_stamp": "00:00",
+    #                    }]
+
+    if(frame_count%10==0):
+        abc = [{"Zone_no" : a, "Violations" : b} for (a, b) in zip(zone_count_no, zones_count)]
+        dict2 = {'zone_info' : abc}
+        send_dict = [{"total_people" : i,
+                    "total_violations": violation_count,
+                    "time_stamp": str(datetime.now()),
+                    "zone_info" : dict2
+                    }
+                    ]
+
+        result = firebase.post('/Surveillance', send_dict)
+'''
     for i in range(zones):
         str2 = "Zone " + str(i+1) + " : " + str(zones_count[i]) + "\n"
         #print(str2)
         fo = open("/content/gdrive/My Drive/zone_op.txt", "a+")        
         fo.write(str2)
-        
+'''      
     i=0
     for coord in xywh:
         x, y, w, h = coord
@@ -451,7 +489,7 @@ def YOLO(F= 0.00415, sd = 0, video_path = '/content/mask_footage.mp4', configPat
     darknet_image = darknet.make_image(darknet.network_width(netMain),
                                     darknet.network_height(netMain),3)
     while True:
-        #try:
+        try:
             prev_time = time.time()
             ret, frame_read = cap.read()
             frame_rgb = cv2.cvtColor(frame_read, cv2.COLOR_BGR2RGB)
@@ -459,7 +497,7 @@ def YOLO(F= 0.00415, sd = 0, video_path = '/content/mask_footage.mp4', configPat
             #frame_resized = cv2.rotate(frame_resized, cv2.ROTATE_90_CLOCKWISE)
             darknet.copy_image_from_bytes(darknet_image,frame_resized.tobytes())
            
-        
+            frame_count +=1
             detections = darknet.detect_image(netMain, metaMain, darknet_image, thresh=0.25)
             image = cvDrawBoxes(detections, frame_resized, SD, f)
             image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
@@ -468,9 +506,12 @@ def YOLO(F= 0.00415, sd = 0, video_path = '/content/mask_footage.mp4', configPat
             io.imshow(image)
             io.show()
             cv2.waitKey(3)
-        #except:
-            #break;
-      
+        except:
+            break;
+    '''try:
+        #c.close();  
+    except:
+        print("Error")'''
     cap.release()
     out.release()
     
