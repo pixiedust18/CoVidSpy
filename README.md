@@ -22,4 +22,8 @@ https://drive.google.com/drive/folders/1ljjTYc5eigNaVWz9o84qDD3Vh7eWZW1F?usp=sha
 3) Finally, run the file run_zoning.py
 
 
+Find a detailed explanation and demo of the project here:
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/53fDd14n36Q/0.jpg)](https://www.youtube.com/watch?v=53fDd14n36Q)
+
+
 
