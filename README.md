@@ -21,7 +21,7 @@ https://drive.google.com/drive/folders/1ljjTYc5eigNaVWz9o84qDD3Vh7eWZW1F?usp=sha
   - Copy the output to "floor_coordinates.txt"
 3) Finally, run the file run_zoning.py
 
-If you have used this project in your research, do cite our paper(https://ieeexplore.ieee.org/document/9297902):
+If you have used this project in your research, do cite our paper(https://ieeexplore.ieee.org/document/9297902): <br>
 K. Bhambani, T. Jain and K. A. Sultanpure, "Real-time Face Mask and Social Distancing Violation Detection System using YOLO," 2020 IEEE Bangalore Humanitarian Technology Conference (B-HTC), 2020, pp. 1-6, doi: 10.1109/B-HTC50970.2020.9297902.
 
 Find a detailed explanation and demo of the project here: <br>
